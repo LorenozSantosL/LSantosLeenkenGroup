@@ -22,7 +22,7 @@ namespace SL.Controllers
             }
             else
             {
-                return NotFound();
+                return NotFound(result);
             }
         }
 
@@ -39,7 +39,7 @@ namespace SL.Controllers
             }
             else
             {
-                return NotFound();
+                return NotFound(result);
             }
         }
 

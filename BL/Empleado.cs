@@ -92,6 +92,7 @@ namespace BL
                             empleado.EntidadFederativa = new ML.EntidadFederativa();
 
                             empleado.EntidadFederativa.IdEstado = obj.IdEstado.Value;
+                            empleado.EntidadFederativa.Nombre = obj.NombreEstado;
 
                             result.Objects.Add(empleado);
                         }
@@ -130,6 +131,7 @@ namespace BL
 
                         empleado.EntidadFederativa = new ML.EntidadFederativa();
                         empleado.EntidadFederativa.IdEstado = objEmpleado.IdEstado.Value;
+                        empleado.EntidadFederativa.Nombre = objEmpleado.NombreEstado;
 
                         result.Object = empleado;
                     }

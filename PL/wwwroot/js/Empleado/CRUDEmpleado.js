@@ -2,6 +2,7 @@
 
 $(document).ready(function () { //click
     GetAll();
+    EstadoGetAll();
 });
 
 function GetAll() {
@@ -23,8 +24,9 @@ function GetAll() {
                     + "<td  id='id' class='text-center'>" + empleado.numeroNomina + "</td>"
                         + "<td class='text-center'>" + empleado.nombre + "</td>"
                         + "<td class='text-center'>" + empleado.apellidoPaterno + "</ td>"
-                        + "<td class='text-center'>" + empleado.apellidoMaterno + "</td>"
-                        + "<td class='text-center'>" + empleado.entidadFederativa.idEstado + "</td>"
+                    + "<td class='text-center'>" + empleado.apellidoMaterno + "</td>"
+
+                    + "<td class='text-center'>" + empleado.entidadFederativa.nombre + "</td>"
                         /*+ '<td class="text-center">  <a href="#" onclick="return Eliminar(' + empleado.idempleado + ')">' + '</a>    </td>'*/
                         + '<td class="text-center"> '
                     + '<a href="#" class="btn btn-danger bi bi-trash" onclick="return Eliminar(' + empleado.idEmpleado + ')">'
@@ -52,7 +54,7 @@ function Actualizar() {
         ApellidoPaterno: $('#txtApellidoPaterno').val(),
         ApellidoMaterno: $('#txtApellidoMaterno').val(),
         EntidadFederativa: {
-            IdEstado: $('#txtIdEstado').val()
+            IdEstado: $('#ddlEstados').val()
         }
     };
 
@@ -92,7 +94,7 @@ function GetById(IdEmpleado) {
             $('#txtNombre').val(result.object.nombre);
             $('#txtApellidoPaterno').val(result.object.apellidoPaterno);
             $('#txtApellidoMaterno').val(result.object.apellidoMaterno);
-            $('#txtIdEstado').val(result.object.entidadFederativa.idEstado);
+            $('#ddlEstados').val(result.object.entidadFederativa.idEstado);
             $('#ModalUpdate').modal('show');
         },
         error: function (result) {
@@ -152,4 +154,22 @@ function Eliminar(IdEmpleado) {
 
         });
     };
+};
+
+/*estados*/
+
+function EstadoGetAll() {
+    $.ajax({
+        type: 'GET',
+        url: 'http://localhost:5235/api/EntidadFederativa/GetAll',
+        success: function (result) {
+            $('#ddlEstados').append('<option value="' + 0 + '">' + 'Seleccione una opción' + '</option>');
+            $.each(result.objects, function (i, estado) {
+    
+                $('#ddlEstados').append('<option value="'
+                    + estado.idEstado + '">'
+                    + estado.nombre + '</option>');
+            });
+        }
+    });
 };

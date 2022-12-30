@@ -16,6 +16,7 @@ public partial class Empleado
     public string? ApellidoMaterno { get; set; }
 
     public int? IdEstado { get; set; }
+    public string? NombreEstado { get; set; }
 
     public virtual EntidadFederativa? IdEstadoNavigation { get; set; }
 
